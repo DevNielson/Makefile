@@ -11,7 +11,7 @@ BUILD_DIR := ../build
 INCLUDE_DIR := -I ../include
 SRC_DIR := ../src
 SOURCE := $(wildcard $(SRC_DIR)/*.cpp)
-OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCE))
+OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.cpp.o,$(SOURCE))
 TARGET := $(BIN_DIR)/output.exe
 
 SDL_INCLUDE := -I C:/SDL3/x86_64-w64-mingw32/include
@@ -38,7 +38,7 @@ run: $(TARGET)
 $(TARGET): $(OBJECTS)
 	@$(CXX) $(CXX_FLAGS) -o $@ $^ $(INCLUDES) $(LIBS) $(LINKERS)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(BUILD_DIR)/%.cpp.o: $(SRC_DIR)/%.cpp
 	@$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDES) $(LIBS)
 
 .PHONY: clean
